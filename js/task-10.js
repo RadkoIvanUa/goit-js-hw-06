@@ -11,20 +11,24 @@ function getRandomHexColor() {
     .padStart(6, 0)}`;
 }
 
-function createBoxes(amount) {
-  const divArray = [];
-  let item = "";
-  let size = 30;
-  for (let i = 1; i <= amount; i += 1) {
-    item = document.createElement("div");
-    item.style.backgroundColor = getRandomHexColor();
-    item.style.width = size + "px";
-    item.style.height = size + "px";
-    size += 10;
-    divArray.push(item);
-  }
+const max = ref.controls.firstElementChild.getAttribute("max");
 
-  return ref.boxes.append(...divArray);
+function createBoxes(amount) {
+  if (amount <= Number(max)) {
+    const divArray = [];
+    let item = "";
+    let size = 30;
+    for (let i = 1; i <= amount; i += 1) {
+      item = document.createElement("div");
+      item.style.backgroundColor = getRandomHexColor();
+      item.style.width = size + "px";
+      item.style.height = size + "px";
+      size += 10;
+      divArray.push(item);
+    }
+
+    return ref.boxes.append(...divArray);
+  }
 }
 
 function destroyBoxes() {
