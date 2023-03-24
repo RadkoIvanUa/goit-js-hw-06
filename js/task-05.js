@@ -6,7 +6,7 @@ const ref = {
 ref.input.addEventListener("input", onInputEvent);
 
 function onInputEvent(event) {
-  event.currentTarget.value !== ""
-    ? (ref.output.textContent = event.currentTarget.value.trim())
+  ref.input.value.trim() !== ""
+    ? (ref.output.textContent = event.currentTarget.value)
     : (ref.output.textContent = "Anonymous");
 }

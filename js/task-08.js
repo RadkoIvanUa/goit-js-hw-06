@@ -9,8 +9,8 @@ function onSubmit(event) {
 
   if (email.value.trim() && password.value.trim() !== "") {
     const userInformation = {
-      email: email.value,
-      password: password.value,
+      email: email.value.trim(),
+      password: password.value.trim(),
     };
     console.log(userInformation);
     loginFormEl.reset();

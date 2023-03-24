@@ -11,11 +11,12 @@ function getRandomHexColor() {
     .padStart(6, 0)}`;
 }
 
-const max = ref.controls.firstElementChild.getAttribute("max");
+const max = Number(ref.controls.firstElementChild.getAttribute("max"));
 
 function createBoxes(amount) {
-  if (amount <= Number(max)) {
+  if (amount <= max) {
     const divArray = [];
+
     let item = "";
     let size = 30;
     for (let i = 1; i <= amount; i += 1) {
@@ -26,7 +27,6 @@ function createBoxes(amount) {
       size += 10;
       divArray.push(item);
     }
-
     return ref.boxes.append(...divArray);
   }
 }
@@ -35,16 +35,13 @@ function destroyBoxes() {
   ref.boxes.innerHTML = "";
 }
 
-ref.controls.firstElementChild.addEventListener("blur", onInput);
 ref.destroy.addEventListener("click", onClickDestroy);
 
-function onInput(evt) {
-  let value = evt.currentTarget.value;
-  ref.create.addEventListener("click", onCreate);
-  function onCreate() {
-    createBoxes(value);
-    ref.create.removeEventListener("click", onCreate);
-  }
+ref.create.addEventListener("click", onCreate);
+
+function onCreate() {
+  const amount = Number(ref.controls.firstElementChild.value);
+  createBoxes(amount);
 }
 
 function onClickDestroy() {

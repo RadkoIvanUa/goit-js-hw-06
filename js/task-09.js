@@ -12,6 +12,7 @@ const ref = {
 ref.button.addEventListener("click", onClick);
 
 function onClick() {
-  ref.color.textContent = getRandomHexColor();
-  document.body.style.backgroundColor = getRandomHexColor();
+  const randomColor = getRandomHexColor();
+  ref.color.textContent = randomColor;
+  document.body.style.backgroundColor = randomColor;
 }
